@@ -41,3 +41,30 @@ describe("constructing a new Wordle game", () => {
     expect(newWordleWord.word).toBe("APPLE");
   });
 });
+
+describe("test build guess from word", () => {
+  test("sets status of a correct letter to CORRECT", () => {
+    const newWordleCorrect = new Wordle();
+    const results = newWordleCorrect.buildGuessFromWord("A____");
+    expect(results[0]).toEqual({
+      letter: "A",
+      status: "CORRECT",
+    });
+  });
+  test("sets status of a present letter to PRESENT", () => {
+    const newWordlePresent = new Wordle();
+    const results = newWordlePresent.buildGuessFromWord("E____");
+    expect(results[0]).toEqual({
+      letter: "E",
+      status: "PRESENT",
+    });
+  });
+  test("sets status of an absent letter to ABSENT", () => {
+    const newWordleAbsent = new Wordle();
+    const results = newWordleAbsent.buildGuessFromWord("Z____");
+    expect(results[0]).toEqual({
+      letter: "Z",
+      status: "ABSENT",
+    });
+  });
+});
